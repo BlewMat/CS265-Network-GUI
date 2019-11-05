@@ -3,88 +3,17 @@ import requests
 from tkinter import *
 
 def button_click(button):
-    global count, button_swap, layout
-    global button1, button2, button3, button4
-    global button5, button6, button7, button8
-    global button9, button10, button11, button12
-    global button13, button14, button15, button16
-    global weight, weight1
+    global count, button_swap, layout, buttons
 
-    swap_button = button1
-
-    if (button == '1'):
-        swap_button = button1
-    elif (button == '2'):
-        swap_button = button2
-    elif (button == '3'):
-        swap_button = button3
-    elif (button == '4'):
-        swap_button = button4
-    elif (button == '5'):
-        swap_button = button5
-    elif (button == '6'):
-        swap_button = button6
-    elif (button == '7'):
-        swap_button = button7
-    elif (button == '8'):
-        swap_button = button8
-    elif (button == '9'):
-        swap_button = button9
-    elif (button == '10'):
-        swap_button = button10
-    elif (button == '11'):
-        swap_button = button11
-    elif (button == '12'):
-        swap_button = button12
-    elif (button == '13'):
-        swap_button = button13
-    elif (button == '14'):
-        swap_button = button14
-    elif (button == '15'):
-        swap_button = button15
-    elif (button == '16'):
-        swap_button = button16
-
+    swap_button = buttons[int(button)-1]
 
     count += 1
 
     if (count % 2 == 0):
 
         swap = button_swap[0]
-        swap_button2 = button1
 
-        if (swap == '1'):
-            swap_button2 = button1
-        elif (swap == '2'):
-            swap_button2 = button2
-        elif (swap == '3'):
-            swap_button2 = button3
-        elif (swap == '4'):
-            swap_button2 = button4
-        elif (swap == '5'):
-            swap_button2 = button5
-        elif (swap == '6'):
-            swap_button2 = button6
-        elif (swap == '7'):
-            swap_button2 = button7
-        elif (swap == '8'):
-            swap_button2 = button8
-        elif (swap == '9'):
-            swap_button2 = button9
-        elif (swap == '10'):
-            swap_button2 = button10
-        elif (swap == '11'):
-            swap_button2 = button11
-        elif (swap == '12'):
-            swap_button2 = button12
-        elif (swap == '13'):
-            swap_button2 = button13
-        elif (swap == '14'):
-            swap_button2 = button14
-        elif (swap == '15'):
-            swap_button2 = button15
-        elif (swap == '16'):
-            swap_button2 = button16
+        swap_button2 = buttons[int(swap)-1]
 
         x_pos = swap_button2.winfo_rootx()
         y_pos = swap_button2.winfo_rooty()
@@ -114,9 +43,8 @@ def button_click(button):
         layout[button] = layout[swap]
         layout[swap] = temp
 
-
     else:
-        print("No swap")
+
         button_swap[0] = button
         swap_button['highlightbackground'] = 'grey'
 
@@ -333,6 +261,8 @@ link8 = canvas.create_line(300, 500, 500, 500, fill="red", width=5, tags='7')
 
 
 #--------------------Bottom---------------------
+reset_pic = PhotoImage(file="reset.png")
+
 box1 = canvas.create_rectangle(190, 570, 480, 625, outline='grey', fill='green', width='4')
 
 exit_button = Button(text='EXIT', foreground='white', highlightbackground='black', font=('Times New Roman', 25), command=exit)
@@ -344,14 +274,16 @@ save_button.place(x=400, y=580)
 load_button = Button(text='LOAD', foreground='white', highlightbackground='black', font=('Times New Roman', 25), command=load)
 load_button.place(x=200, y=580)
 
-reset_button = Button(text='RESET', foreground='black', font=('Times New Roman', 18), command=reset)
-reset_button.place(x=610, y=600)
+reset_button = Button(compound=BOTTOM, image=reset_pic, text='RESET', foreground='black', font=('Times New Roman', 16), command=reset)
+reset_button.place(x=620, y=560)
 
 canvas.bind('<ButtonRelease-1>', on_click_release)
 
 
 button_swap = [0]
 count = 0
+
+buttons = [button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12]
 
 layout = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
